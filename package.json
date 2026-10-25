@@ -1,0 +1,16 @@
+{
+  "name": "trustvault",
+  "version": "2.0.0",
+  "private": true,
+  "description": "TrustVault: secure document sharing with per-document grants and a verifiable audit trail",
+  "main": "server.js",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node seed.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}
