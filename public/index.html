@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TrustVault</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div id="boot" class="boot">Loading…</div>
+
+  <section id="login-view" class="login-wrap" hidden>
+    <div class="login-card">
+      <div class="brand-mark" aria-hidden="true">TV</div>
+      <h1>TrustVault</h1>
+      <p class="muted">Secure document sharing. Every access is granted, checked and recorded.</p>
+      <form id="login-form" class="stack" novalidate>
+        <label>Email
+          <input id="login-email" type="email" autocomplete="username" required>
+        </label>
+        <label>Password
+          <input id="login-password" type="password" autocomplete="current-password" required>
+        </label>
+        <p id="login-error" class="form-error" role="alert"></p>
+        <button class="btn primary block" type="submit">Sign in</button>
+      </form>
+    </div>
+  </section>
+
+  <div id="app-view" hidden>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">TV</span>
+        <span>TrustVault</span>
+      </div>
+      <nav class="nav" aria-label="Main">
+        <a href="#/" data-nav="documents">Documents</a>
+        <a href="#/admin" data-nav="admin" hidden>Admin</a>
+      </nav>
+      <div class="whoami">
+        <span id="whoami-name"></span>
+        <span id="whoami-role"></span>
+        <button id="signout" class="btn ghost small" type="button">Sign out</button>
+      </div>
+    </header>
+    <main id="view" class="container"></main>
+  </div>
+
+  <dialog id="dlg-upload" class="dialog">
+    <form id="upload-form" method="dialog" class="stack">
+      <h2>Upload a document</h2>
+      <label>Title <input name="title" maxlength="120" required></label>
+      <label>Category
+        <select name="category" data-categories></select>
+      </label>
+      <label>File <span class="hint">PDF, PNG, JPG or TXT, up to 10 MB</span>
+        <input name="file" type="file" accept=".pdf,.png,.jpg,.jpeg,.txt" required>
+      </label>
+      <p class="form-error" data-error></p>
+      <div class="actions">
+        <button class="btn ghost" type="button" data-close>Cancel</button>
+        <button class="btn primary" type="submit">Upload</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-link" class="dialog">
+    <form id="link-form" method="dialog" class="stack">
+      <h2>Create a share link</h2>
+      <p class="muted">The link alone is not enough. The recipient also needs the passcode, which you give them separately.</p>
+      <label>Label <input name="label" maxlength="80" placeholder="For the client review"></label>
+      <div class="grid-2">
+        <label>Expires after
+          <select name="expiresHours">
+            <option value="24">24 hours</option>
+            <option value="72">3 days</option>
+            <option value="168">7 days</option>
+            <option value="1">1 hour</option>
+          </select>
+        </label>
+        <label>Maximum downloads
+          <select name="maxDownloads">
+            <option value="1">1</option>
+            <option value="3">3</option>
+            <option value="10">10</option>
+          </select>
+        </label>
+      </div>
+      <label>Passcode <span class="hint">leave empty to generate one</span>
+        <input name="passcode" minlength="6" maxlength="64" autocomplete="off">
+      </label>
+      <p class="form-error" data-error></p>
+      <div class="actions">
+        <button class="btn ghost" type="button" data-close>Cancel</button>
+        <button class="btn primary" type="submit">Create link</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-result" class="dialog">
+    <div class="stack">
+      <h2>Link created</h2>
+      <p class="muted">Copy both now. The passcode is shown only once and is not stored in readable form.</p>
+      <label>Link <input id="result-url" readonly></label>
+      <label>Passcode <input id="result-passcode" readonly></label>
+      <div class="actions">
+        <button class="btn ghost" type="button" data-close>Done</button>
+        <button class="btn primary" type="button" id="copy-both">Copy link and passcode</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Shared document · TrustVault</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="login-wrap">
+    <section class="login-card" aria-labelledby="share-title">
+      <div class="brand-mark" aria-hidden="true">TV</div>
+      <h1 id="share-title">Shared document</h1>
+      <div id="share-info" class="stack muted" role="status">Checking the link…</div>
+
+      <form id="share-form" class="stack" hidden novalidate>
+        <label>Passcode
+          <input id="share-passcode" type="password" autocomplete="off" required minlength="6" maxlength="64">
+        </label>
+        <p id="share-error" class="form-error" role="alert"></p>
+        <button class="btn primary block" type="submit">Download</button>
+      </form>
+
+      <p class="small muted">Enter the passcode the sender gave you. Each download is recorded.</p>
+    </section>
+  </div>
+  <script src="/share.js" type="module"></script>
+</body>
+</html>
